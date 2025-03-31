@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="row" >
           <div className="col border-end">52-1-33-12345678<br />info@sitio.com</div>
           <div className="col border-end">Medellín, Antioquia, Colombia</div>
-          <div className="col border-end">Derechos reservados</div>
+          <div className="col border-end">&copy; {new Date().getFullYear()} Todos los derechos reservados</div>
           <div className="col">&nbsp;</div>
       </div>
         </footer>
