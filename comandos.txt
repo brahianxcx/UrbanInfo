@@ -1,0 +1,8 @@
+1. npm create vite@latest
+2. confirmamos que deseamos crear el proyecto (y)
+3. damos un nombre al proyecto
+4. Seleccionamos el framework - React
+5. Seleccionamos Variant - JavaScript
+6. Ingrasamos a la carpeta del proyecto
+cd Nombre_Carpeta
+7. npm install
