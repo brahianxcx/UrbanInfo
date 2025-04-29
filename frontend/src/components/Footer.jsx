@@ -2,17 +2,8 @@ import React from 'react';
 
 export default function Footer() {
     return (
-      <footer className="text-success text-start p-3 mt-4" style={{ backgroundColor: '#f5f5dc' }}>
-         <div className="row mb-2">
-                <div className="col-12 text-start fw-bold">UrbanInfo </div>
-            </div>
-      <div className="row" >
-          <div className="col border-end">52-1-33-12345678<br />info@sitio.com</div>
-          <div className="col border-end">Medellín, Antioquia, Colombia</div>
-          <div className="col border-end">&copy; {new Date().getFullYear()} Todos los derechos reservados</div>
-          <div className="col">&nbsp;</div>
-      </div>
+        <footer style={{ backgroundColor: '#dfffd6', padding: '10px', textAlign: 'center' }}>
+            <p>Contact us: info@sitio.com | Medellín, Antioquia, Colombia</p>
         </footer>
-    );
+    );
 }
-
