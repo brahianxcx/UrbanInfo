@@ -13,7 +13,7 @@ const Login = () => {
           <div className="mb-3">
             <input
               type="text"
-              placeholder="Usuario"
+              placeholder="Usuario o Correo Electrónico"
               className="form-control"
               style={{
                 borderColor: '#cccccc',
@@ -66,4 +66,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;

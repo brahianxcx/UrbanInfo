@@ -1,13 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';  // Importa Link
 
 export default function Home() {
-    return (
-        <section style={{ backgroundColor: '#f5f5dc', padding: '20px', textAlign: 'center' }}>
-            <h2>¡Bienvenidos a UrbanInfo!</h2>
-            <p>Información Comunitaria</p>
-            <button style={{ backgroundColor: '#c3e88d', border: 'none', padding: '10px 20px', cursor: 'pointer' }}>
-                Explorar
-            </button>
-        </section>
-    );
+  return (
+    <div className="d-flex vh-100">
+      <div className="w-50 d-flex flex-column justify-content-center align-items-center" style={{ backgroundColor: '#f5f5dc' }}>
+        <small>Información Comunitaria</small>
+        <h1>¡Bienvenidos a UrbanInfo!</h1>
+        {/* Usamos Link para redirigir */}
+        <Link to="/products" className="btn btn-success">
+          Explorar
+        </Link>
+      </div>
+      <div className="w-50">
+        <img
+          src="UrbanInfo.jpeg"
+          alt="UrbanInfo"
+          className="w-100 h-100"
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
+    </div>
+  );
 }
