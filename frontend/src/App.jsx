@@ -8,12 +8,19 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import TablaUsuarios from './pages/TablaUsuarios'; 
 import Cuenta from './pages/Cuenta'; 
+import Servicios from './pages/Servicios'; 
+import Explore from './pages/Explore';
+import ListarUsuarios from './pages/Usuarios/ListarUsuarios';
+import Urbanizacion from './pages/Urbanizacion';
+import Ajustes from './pages/Ajustes';
+import Eventos from './pages/Eventos';
+import HomePrincipal from './pages/HomePrincipal';
 
 export default function App() {
   return (
     <Router>
       <div style={{ minHeight: '100vh', backgroundColor: '#f5f5dc' }}>
-        <div className="container" style={{ maxWidth: '1000px' }}>
+        <div className="" style={{ }}>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -22,6 +29,13 @@ export default function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/tabla-usuarios" element={<TablaUsuarios />} />
             <Route path="/cuenta" element={<Cuenta />} /> 
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/listar-usuarios" element={<ListarUsuarios />} />
+            <Route path='/Urbanizacion' element={<Urbanizacion />} />
+            <Route path='/ajustes' element={<Ajustes />} />
+            <Route path='/eventos' element={<Eventos />} />
+            <Route path="/home-principal" element={<HomePrincipal/>} />
           </Routes>
           <Footer />
         </div>

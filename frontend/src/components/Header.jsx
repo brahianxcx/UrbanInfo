@@ -3,27 +3,100 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <header className="d-flex justify-content-between align-items-center px-4 py-1 border-bottom" style={{ backgroundColor: '#4f7942' }}>
+    <header
+      className="d-flex justify-content-between align-items-center px-4 py-2 border-bottom"
+      style={{
+        backgroundColor: '#4f7942',
+        width: '100%',
+        position: 'relative',
+        zIndex: 1000,
+      }}
+    >
+      {/* Logo + Título */}
       <div className="d-flex align-items-center">
-        <img src="logo.jpg" alt="" style={{ height: '25px' }} className="me-2" />
-        <Link to="/" className="text-decoration-none m-0 fs-6" style={{ color: 'white', fontWeight: 'bold' }}>UrbanInfo</Link>
+        <img src="logo1.png" alt="Logo" style={{ height: '40px' }} className="me-2" />
+        <Link to="/" className="text-decoration-none fs-5 fw-bold" style={{ color: 'white' }}>
+          UrbanInfo
+        </Link>
       </div>
 
-      <div className="d-flex ms-auto gap-2">
-        <div className="dropdown">
-          <button className="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ height: "35px" }}>
-            Menu
-          </button>
-          <ul className="dropdown-menu">
-            <li><Link className="dropdown-item" to="/cuenta">Cuenta</Link></li> {/* Modificado para agregar el enlace a Cuenta */}
-            <li><a className="dropdown-item" href="#">Servicios</a></li>
-            <li><a className="dropdown-item" href="#">Ajustes</a></li>
+      {/* Botones */}
+      <div className="d-flex align-items-center gap-3">
+        {/* Botón de Login */}
+        <Link
+          to="/login"
+          className="btn"
+          style={{
+            height: "35px",
+            backgroundColor: '#aa9c7c',
+            color: 'white',
+            border: '2px solid #8c7b5e',
+            borderRadius: '5px',
+            padding: '0 15px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          LOGIN
+        </Link>
+
+        {/* Botón menú hamburguesa */}
+        <button
+          className="btn p-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#menuLateralDerecho"
+          aria-controls="menuLateralDerecho"
+          style={{
+            backgroundColor: 'transparent',
+            border: 'none',
+            boxShadow: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '35px',
+            width: '35px',
+          }}
+        >
+          <span style={{ fontSize: '24px', color: 'white' }}>&#9776;</span>
+        </button>
+      </div>
+
+      {/* Menú lateral */}
+      <div
+        className="offcanvas offcanvas-end"
+        tabIndex="-1"
+        id="menuLateralDerecho"
+        aria-labelledby="menuLateralDerechoLabel"
+      >
+        <div className="offcanvas-header" style={{ backgroundColor: '#4f7942' }}>
+          <h5 className="offcanvas-title" id="menuLateralDerechoLabel" style={{ color: "white" }}>
+            UrbanInfo
+          </h5>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div
+          className="offcanvas-body"
+          style={{
+            backgroundColor: '#aa9c7c',
+            color: 'white',
+            fontSize: '18px',
+          }}
+        >
+          <ul className="list-unstyled">
+            <li><a className="dropdown-item mb-2" href="/cuenta">Cuenta</a></li>
+            <li><a className="dropdown-item mb-2" href="/servicios">Servicios</a></li>
+            <li><a className="dropdown-item mb-2" href="/listar-usuarios">Ver Usuarios</a></li>
+            <li><a className="dropdown-item mb-2" href="/Urbanizacion">Mis urbanizaciones</a></li>
+            <li><a className="dropdown-item mb-2" href="/eventos">Eventos</a></li>
+            <li><a className="dropdown-item mb-2" href="/ajustes">Ajustes</a></li>
           </ul>
         </div>
-
-        <Link to="/register" className="btn btn-success" style={{ height: "35px" }}>Registrarse</Link>
-        <Link to="/login" className="btn btn-success" style={{ height: "35px" }}>LOGIN</Link>
-        <Link to="/tabla-usuarios" className="btn btn-success" style={{ height: "35px" }}>Ver Usuarios</Link>
       </div>
     </header>
   );

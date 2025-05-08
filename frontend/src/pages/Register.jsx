@@ -68,6 +68,21 @@ const Register = () => {
               }}
             />
           </div>
+          
+          <div className="mb-3">
+            <input
+              type="Nuumber"
+              placeholder="Número de Teléfono"             
+              className="form-control"
+              style={{
+                borderColor: '#cccccc',
+                borderRadius: '8px',
+                padding: '10px',
+                fontSize: '14px',
+                color: '#555555'
+              }}
+            />
+          </div>
           {/* Botón de registro */}
           <button
             type="submit"

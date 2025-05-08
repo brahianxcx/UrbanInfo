@@ -45,6 +45,11 @@ const Login = () => {
               ¿Olvidaste tu contraseña?
             </a>
           </div>
+          <div className="text-end mb-3">
+            <a href="/register" style={{ color: '#28a745', fontSize: '14px', textDecoration: 'none' }}>
+              ¿No tienes cuenta? Registrate
+            </a>
+          </div>
           {/* Botón de login */}
           <button
             type="submit"

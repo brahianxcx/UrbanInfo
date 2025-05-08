@@ -1,83 +1,82 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Productos() {
   return (
     <div className="d-flex flex-column" style={{ backgroundColor: '#f5f5dc' }}>
-        <h2 className="text-start" style={{ borderBottom: '2px solid gray', paddingBottom: '5px' }}>Servicios</h2>
-        <div className="d-flex justify-content-around p-3" style={{ backgroundColor: '#f5f5dc' }}>
-            <div className="border p-3" style={{borderTop: '2px solid gray' }}>
-                <h3>Pago de Servicios</h3>
-                <p>US$ 5</p>
-                <button className="btn btn-success" >Reservar ahora</button>
-            </div>
-            <div className="border p-3"  >
-                <h3>Reserva de Instalaciones</h3>
-                <p>US$ 20</p>
-                <button className="btn btn-success">Reservar ahora</button>
-            </div>
-            <div className="border p-3"  >
-                
-                <h3>Servicio a Domicilio</h3>
-                <p>US$ 10</p>
-                <button className="btn btn-success"  >Reservar ahora</button>
-            </div>
+      <h2 className="text-center py-4" style={{ borderBottom: '3px solid gray' }}>
+        Más Información sobre UrbanInfo
+      </h2>
+      <div className="d-flex p-4 align-items-center" style={{ backgroundColor: '#f5f5dc' }}>
+        <div className="w-50 text-center p-4">
+          <h3>¿Qué es UrbanInfo?</h3>
+          <p>
+            UrbanInfo es una plataforma moderna diseñada para mejorar la comunicación, gestión y vida en comunidad dentro de urbanizaciones y conjuntos residenciales. Ofrece múltiples funciones prácticas, desde anuncios, reservas, soporte técnico y participación activa en eventos, todo en una sola app. 
+          </p>
+          <p>
+            ¡Descubre una nueva forma de vivir en comunidad!
+          </p>
+          <Link
+            to="/explore"
+            className="btn btn-success"
+            style={{
+              height: '40px',
+              backgroundColor: '#aa9c7c',
+              color: 'white',
+              border: '2px solid #8c7b5e',
+              borderRadius: '6px'
+            }}
+          >
+            Saber más
+          </Link>
         </div>
-        <div className="d-flex p-3"  style={{ backgroundColor: '#f5f5dc' }}>
-            <div className="w-50 text-center p-3">
-                <h3>UrbanInfo</h3>
-                <p>Sobre Nosotros</p>
-                <p>
-                    Descubre la excelencia en urbanización con UrbanInfo. Somos la
-                    opción definitiva para todos tus servicios de urbanización. Nuestro
-                    compromiso es brindarte calidad y eficiencia en cada proyecto.
-                    Con UrbanInfo, tu satisfacción está garantizada. ¡Únete a nosotros hoy!
-                </p>
-                <button className="btn btn-success">Explora</button>
-            </div>
-            <div className="w-50" style={{ backgroundColor: '#f5f5dc' }}>
-                <img 
-                    src="sobrenosotros.jpg" 
-                    alt="UrbanInfo" 
-                    className="w-100 h-100" 
-                    style={{ objectFit: 'cover' }} 
-                />
-                </div>
-             </div>
-             <h2 className="text-center p-3" style={{ borderBottom: '2px solid gray', paddingBottom: '5px' }}>Eventos Próximos</h2>
-            <div className="d-flex justify-content-around p-3">
-            <div className="border p-3" style={{ borderTop: '2px solid gray' }}>
-  <img src="OIP.jpeg" alt="Encuentro profesional" 
-       className="w-100 mb-2" 
-       style={{ height: '200px', objectFit: 'cover' }} />
-  <h3>Encuentro profesional</h3>
-  <p>mar, 09 de ene | Vista des...</p>
-  <p>Leer más</p>
-  <button className="btn btn-success">VER MAS...</button>
-</div>
-
-<div className="border p-3" style={{ borderTop: '2px solid gray' }}>
-  <img src="profesionales-evento-ideas-comunidad.webp" alt="Evento urbano de profesionales" 
-       className="w-100 mb-2" 
-       style={{ height: '200px', objectFit: 'cover' }} />
-  <h3>Evento urbano de profesionales</h3>
-  <p>mar, 06 de feb | Distrito d...</p>
-  <p>Leer más</p>
-  <button className="btn btn-success">VER MAS...</button>
-</div>
-
-<div className="border p-3" style={{ borderTop: '2px solid gray' }}>
-  <img src="playa.avif" alt="Fiesta privada al atardecer" 
-       className="w-100 mb-2" 
-       style={{ height: '200px', objectFit: 'cover' }} />
-  <h3>Fiesta privada al atardecer</h3>
-  <p>sáb, 17 de mar | West Villa...</p>
-  <p>Leer más</p>
-  <button className="btn btn-success">VER MAS...</button>
-</div>
-
-                    
-            </div>
+        <div className="w-50">
+          <img
+            src="sobrenosotros.jpg"
+            alt="UrbanInfo"
+            className="w-100 h-100"
+            style={{ objectFit: 'cover', borderRadius: '10px' }}
+          />
         </div>
-  
-    );
+      </div>
+      <div className="d-flex flex-column gap-4 p-4">
+        <div className="p-4 border rounded shadow" style={{ backgroundColor: '#e0dcb5' }}>
+          <h3>Gestión de Anuncios</h3>
+          <p>
+            Publica y visualiza anuncios relevantes para toda la comunidad en tiempo real. La administración puede compartir información crucial como mantenimientos, avisos de seguridad o eventos importantes directamente a los residentes.
+          </p>
+        </div>
+
+        <div className="p-4 border rounded shadow" style={{ backgroundColor: '#e0dcb5' }}>
+          <h3>Reservas de Instalaciones</h3>
+          <p>
+            Facilita la reserva de espacios comunes como salones sociales, canchas deportivas o zonas BBQ sin necesidad de papeleos. Desde tu celular o computador puedes agendar tu espacio con facilidad.
+          </p>
+        </div>
+
+        <div className="p-4 border rounded shadow" style={{ backgroundColor: '#e0dcb5' }}>
+          <h3>Notificaciones Instantáneas</h3>
+          <p>
+            Recibe alertas inmediatas sobre novedades en tu urbanización: cortes de agua, mantenimiento, reuniones o cualquier evento urgente. Así nunca te perderás de lo que ocurre en tu comunidad.
+          </p>
+        </div>
+
+        <div className="p-4 border rounded shadow" style={{ backgroundColor: '#e0dcb5' }}>
+          <h3>Soporte Técnico</h3>
+          <p>
+            Un canal directo para que los usuarios reporten fallos en la plataforma y soporte dentro de la urbanizaciòn. Nuestro equipo de soporte está listo para ayudarte y mantener una experiencia fluida y segura.
+          </p>
+        </div>
+
+        <div className="p-4 border rounded shadow" style={{ backgroundColor: '#e0dcb5' }}>
+          <h3>Participación en Eventos</h3>
+          <p>
+            Desde UrbanInfo también puedes explorar y unirte a eventos comunitarios como ferias, reuniones vecinales o celebraciones locales. Todo desde la comodidad de tu dispositivo.
+          </p>
+        </div>
+      </div>
+
+      
+    </div>
+  );
 }
