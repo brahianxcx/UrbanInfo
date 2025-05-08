@@ -3,7 +3,7 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer
-      className="text-white text-start p-4 mt-4"
+      className="text-white text-start p-4 "
       style={{
         backgroundColor: '#4f7942',
        

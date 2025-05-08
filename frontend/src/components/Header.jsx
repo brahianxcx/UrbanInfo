@@ -83,9 +83,9 @@ export default function Header() {
         <div
           className="offcanvas-body"
           style={{
-            backgroundColor: '#aa9c7c',
-            color: 'white',
-            fontSize: '18px',
+            backgroundColor: '#f5f5dc',
+            color: 'black',
+            fontSize: '22px',
           }}
         >
           <ul className="list-unstyled">

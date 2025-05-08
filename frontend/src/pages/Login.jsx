@@ -1,8 +1,11 @@
 import React from "react";
-
+import backgroundImage from "/fondo-login2.jpg"; // Asegúrate de que la ruta sea correcta
 const Login = () => {
   return (
-    <div className="d-flex vh-100 justify-content-center align-items-center" style={{ backgroundColor: '#f5f5dc' }}>
+    <div className="container-fluid" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '100vh', backgroundPosition: 'center', backgroundSize:'contain' }}>
+    
+    
+    <div className="d-flex vh-100 justify-content-center align-items-center" >
       {/* Contenedor del login */}
       <div className="p-4 rounded shadow-lg" style={{ backgroundColor: '#ffffff', width: '320px' }}>
         <h2 className="text-center mb-4" style={{ color: '#333333', fontWeight: 'bold' }}>
@@ -67,6 +70,7 @@ const Login = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };
