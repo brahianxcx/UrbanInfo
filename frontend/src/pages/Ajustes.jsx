@@ -1,180 +1,235 @@
 import React, { useState } from 'react';
 
 export default function Ajustes() {
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
-  const [foto, setFoto] = useState(null);
   const [notificaciones, setNotificaciones] = useState(true);
   const [temaOscuro, setTemaOscuro] = useState(false);
-  const [contraseñaActual, setContraseñaActual] = useState('');
-  const [nuevaContraseña, setNuevaContraseña] = useState('');
-  const [confirmarContraseña, setConfirmarContraseña] = useState('');
   const [modo2FA, setModo2FA] = useState(false);
   const [idioma, setIdioma] = useState('es');
+  const [accesibilidadTextoGrande, setAccesibilidadTextoGrande] = useState(false);
+  const [modoLectura, setModoLectura] = useState(false);
+  const [sonidoActivado, setSonidoActivado] = useState(true);
+  const [ubicacionActivada, setUbicacionActivada] = useState(false);
+  const [privacidadOcultarPerfil, setPrivacidadOcultarPerfil] = useState(false);
+  const [actualizacionesAutomaticas, setActualizacionesAutomaticas] = useState(true);
+  const [rendimientoModoAhorro, setRendimientoModoAhorro] = useState(false);
 
-  const handleChangeNombre = (e) => setNombre(e.target.value);
-  const handleChangeEmail = (e) => setEmail(e.target.value);
-  const handleChangeContraseña = (e) => setContraseñaActual(e.target.value);
-  const handleChangeNuevaContraseña = (e) => setNuevaContraseña(e.target.value);
-  const handleChangeConfirmarContraseña = (e) => setConfirmarContraseña(e.target.value);
-
-  const toggleNotificaciones = () => setNotificaciones(!notificaciones);
-  const toggleTemaOscuro = () => setTemaOscuro(!temaOscuro);
-  const toggle2FA = () => setModo2FA(!modo2FA);
+  const estiloFondo = {
+    backgroundColor: '#ffffff',
+  };
 
   const handleGuardarCambios = () => {
     alert('Cambios guardados con éxito');
   };
 
-  // Estilo de fondo uniforme
-  const estiloFondo = { backgroundColor: '#f4f1e6' };
-
   return (
     <div className="container mt-5">
-      <h2 className="text-center text-success mb-5">Ajustes de Cuenta</h2>
+      <h2 className="text-center text-dark mb-5">Ajustes de la Aplicación</h2>
 
-      {/* Ajustes de perfil */}
-      <div className="mb-5 border rounded p-4 shadow-sm" style={estiloFondo}>
-        <h3>Perfil</h3>
-        <div className="mb-3">
-          <label className="form-label">Cambiar nombre:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={nombre}
-            onChange={handleChangeNombre}
-            placeholder="Ingrese su nombre actual"
-          />
+      <div className="row g-4">
+        {/* Notificaciones */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Notificaciones</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={notificaciones}
+                onChange={() => setNotificaciones(!notificaciones)}
+                id="notificaciones"
+              />
+              <label className="form-check-label" htmlFor="notificaciones">
+                Recibir notificaciones por correo
+              </label>
+            </div>
+          </div>
         </div>
-        <div className='mb-3'>
-          <input
-            type="text"
-            className="form-control"
-            value={nombre}
-            onChange={handleChangeNombre}
-            placeholder="Ingrese su nuevo nombre"
-          />
+
+        {/* Tema */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Tema</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={temaOscuro}
+                onChange={() => setTemaOscuro(!temaOscuro)}
+                id="temaOscuro"
+              />
+              <label className="form-check-label" htmlFor="temaOscuro">
+                Activar tema oscuro
+              </label>
+            </div>
+          </div>
         </div>
-        <div className="mb-3">
-          <label className="form-label">Correo electrónico:</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={handleChangeEmail}
-            placeholder="Ingrese su correo electrónico"
-          />
+
+        {/* Seguridad 2FA */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Seguridad</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={modo2FA}
+                onChange={() => setModo2FA(!modo2FA)}
+                id="modo2FA"
+              />
+              <label className="form-check-label" htmlFor="modo2FA">
+                Autenticación de dos factores (2FA)
+              </label>
+            </div>
+          </div>
         </div>
-        <div className="mb-3">
-          <label className="form-label">Foto de perfil:</label>
-          <input
-            type="file"
-            className="form-control"
-            onChange={(e) => setFoto(URL.createObjectURL(e.target.files[0]))}
-          />
-          {foto && <img src={foto} alt="Foto de perfil" className="mt-3" width="100" />}
+
+        {/* Idioma */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Idioma</h5>
+            <select
+              className="form-select"
+              value={idioma}
+              onChange={(e) => setIdioma(e.target.value)}
+            >
+              <option value="es">Español</option>
+              <option value="en">Inglés</option>
+              <option value="fr">Francés</option>
+              <option value="de">Alemán</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Accesibilidad */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Accesibilidad</h5>
+            <div className="form-check mb-2">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={accesibilidadTextoGrande}
+                onChange={() => setAccesibilidadTextoGrande(!accesibilidadTextoGrande)}
+                id="textoGrande"
+              />
+              <label className="form-check-label" htmlFor="textoGrande">
+                Activar texto grande
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={modoLectura}
+                onChange={() => setModoLectura(!modoLectura)}
+                id="modoLectura"
+              />
+              <label className="form-check-label" htmlFor="modoLectura">
+                Activar modo lectura
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Sonido */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Sonido</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={sonidoActivado}
+                onChange={() => setSonidoActivado(!sonidoActivado)}
+                id="sonido"
+              />
+              <label className="form-check-label" htmlFor="sonido">
+                Sonido activado
+              </label>
+              <br />
+            </div>
+          </div>
+        </div>
+
+        {/* Privacidad */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Privacidad</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={privacidadOcultarPerfil}
+                onChange={() => setPrivacidadOcultarPerfil(!privacidadOcultarPerfil)}
+                id="privacidad"
+              />
+              <label className="form-check-label" htmlFor="privacidad">
+                Ocultar perfil en búsquedas
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Rendimiento */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Rendimiento</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={rendimientoModoAhorro}
+                onChange={() => setRendimientoModoAhorro(!rendimientoModoAhorro)}
+                id="modoAhorro"
+              />
+              <label className="form-check-label" htmlFor="modoAhorro">
+                Activar modo ahorro de energía
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Ubicación */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Ubicación</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={ubicacionActivada}
+                onChange={() => setUbicacionActivada(!ubicacionActivada)}
+                id="ubicacion"
+              />
+              <label className="form-check-label" htmlFor="ubicacion">
+                Permitir acceso a ubicación
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Actualizaciones */}
+        <div className="col-md-6">
+          <div className="border rounded p-3 shadow-sm" style={estiloFondo}>
+            <h5>Actualizaciones</h5>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={actualizacionesAutomaticas}
+                onChange={() => setActualizacionesAutomaticas(!actualizacionesAutomaticas)}
+                id="actualizaciones"
+              />
+              <label className="form-check-label" htmlFor="actualizaciones">
+                Activar actualizaciones automáticas
+              </label>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Ajustes de notificaciones */}
-      <div className="mb-5 border rounded p-4 shadow-sm" style={estiloFondo}>
-        <h3>Notificaciones</h3>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="notificaciones"
-            checked={notificaciones}
-            onChange={toggleNotificaciones}
-          />
-          <label className="form-check-label" htmlFor="notificaciones">
-            Recibir notificaciones por correo electrónico
-          </label>
-        </div>
-      </div>
-
-      {/* Ajustes de seguridad */}
-      <div className="mb-5 border rounded p-4 shadow-sm" style={estiloFondo}>
-        <h3>Seguridad</h3>
-        <div className="mb-3">
-          <label className="form-label">Contraseña actual:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={contraseñaActual}
-            onChange={handleChangeContraseña}
-            placeholder="Ingrese su contraseña actual"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Nueva contraseña:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={nuevaContraseña}
-            onChange={handleChangeNuevaContraseña}
-            placeholder="Ingrese su nueva contraseña"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Confirmar nueva contraseña:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={confirmarContraseña}
-            onChange={handleChangeConfirmarContraseña}
-            placeholder="Confirme su nueva contraseña"
-          />
-        </div>
-        <div className="form-check mb-3">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="2fa"
-            checked={modo2FA}
-            onChange={toggle2FA}
-          />
-          <label className="form-check-label" htmlFor="2fa">
-            Activar autenticación de dos factores (2FA)
-          </label>
-        </div>
-      </div>
-
-      {/* Ajustes de idioma y región */}
-      <div className="mb-5 border rounded p-4 shadow-sm" style={estiloFondo}>
-        <h3>Idioma y Región</h3>
-        <div className="mb-3">
-          <label className="form-label">Idioma:</label>
-          <select
-            className="form-select"
-            value={idioma}
-            onChange={(e) => setIdioma(e.target.value)}
-          >
-            <option value="es">Español</option>
-            <option value="en">Inglés</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Tema */}
-      <div className="mb-5 border rounded p-4 shadow-sm" style={estiloFondo}>
-        <h3>Tema</h3>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="temaOscuro"
-            checked={temaOscuro}
-            onChange={toggleTemaOscuro}
-          />
-          <label className="form-check-label" htmlFor="temaOscuro">
-            Activar tema oscuro
-          </label>
-        </div>
-      </div>
-
-      {/* Botón de guardar cambios */}
-      <button onClick={handleGuardarCambios} className="btn btn-success w-100">
+      {/* Botón guardar */}
+      <button onClick={handleGuardarCambios} className="btn btn-success w-100 mt-5 mb-4">
         Guardar Cambios
       </button>
     </div>

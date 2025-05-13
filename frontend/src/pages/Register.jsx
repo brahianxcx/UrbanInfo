@@ -1,6 +1,11 @@
 import React from "react";
-import backgroundImage from "/fondo-login2.jpg"; // Asegúrate de que la ruta sea correcta
+import backgroundImage from "/fondo-login2.jpg"; 
+import axios from "axios";
+import Swal from "sweetalert2";
+
+
 const Register = () => {
+
   return (
     <div className="container-fluid" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '100vh', backgroundPosition: 'center', backgroundSize:'contain' }}>
 
@@ -14,6 +19,7 @@ const Register = () => {
           {/* Campo de Usuario */}
           <div className="mb-3">
             <input
+          
               type="text"
               placeholder="Nombre de Usuario"
               className="form-control"
@@ -28,7 +34,7 @@ const Register = () => {
           </div>
           {/* Campo de Correo */}
           <div className="mb-3">
-            <input
+            <input         
               type="text"
               placeholder="Correo Electrónico"
               className="form-control"
@@ -72,8 +78,8 @@ const Register = () => {
           </div>
           
           <div className="mb-3">
-            <input
-              type="Nuumber"
+            <input       
+              type="Number"
               placeholder="Número de Teléfono"             
               className="form-control"
               style={{

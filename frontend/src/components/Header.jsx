@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 export default function Header() {
   return (
     <header
@@ -89,13 +90,38 @@ export default function Header() {
           }}
         >
           <ul className="list-unstyled">
-            <li><a className="dropdown-item mb-2" href="/cuenta">Cuenta</a></li>
-            <li><a className="dropdown-item mb-2" href="/servicios">Servicios</a></li>
-            <li><a className="dropdown-item mb-2" href="/listar-usuarios">Ver Usuarios</a></li>
-            <li><a className="dropdown-item mb-2" href="/Urbanizacion">Mis urbanizaciones</a></li>
-            <li><a className="dropdown-item mb-2" href="/eventos">Eventos</a></li>
-            <li><a className="dropdown-item mb-2" href="/ajustes">Ajustes</a></li>
+            <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/cuenta">
+                <i className="bi bi-person-circle me-2"></i> Cuenta
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/servicios">
+                <i className="bi bi-gear me-2"></i> Servicios
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/listar-usuarios">
+                <i className="bi bi-people-fill me-2"></i> Ver Usuarios
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/Urbanizacion">
+                <i className="bi bi-house-door-fill me-2"></i> Mis urbanizaciones
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/eventos">
+                <i className="bi bi-calendar-event-fill me-2"></i> Eventos
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/ajustes">
+                <i className="bi bi-sliders me-2"></i> Ajustes
+              </a>
+            </li>
           </ul>
+
         </div>
       </div>
     </header>
