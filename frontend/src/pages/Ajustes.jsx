@@ -146,7 +146,7 @@ export default function Ajustes() {
               <label className="form-check-label" htmlFor="sonido">
                 Sonido activado
               </label>
-              <br />
+              
             </div>
           </div>
         </div>

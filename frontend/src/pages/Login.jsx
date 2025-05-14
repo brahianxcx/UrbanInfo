@@ -2,7 +2,7 @@ import React from "react";
 import backgroundImage from "/fondo-login2.jpg"; // Asegúrate de que la ruta sea correcta
 const Login = () => {
   return (
-    <div className="container-fluid" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '100vh', backgroundPosition: 'center', backgroundSize:'contain' }}>
+    <div className="container-fluid" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover,contain', height: '100vh', backgroundPosition: 'center'}}>
     
     
     <div className="d-flex vh-100 justify-content-center align-items-center" >
