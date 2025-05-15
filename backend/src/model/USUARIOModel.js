@@ -27,6 +27,19 @@ const DeleteUsuario = async (usuario) => {
     return result.recordset
 }
 
+const UpdateUsuario = async (usuario) => {
+    const { UserID, UserName, PasswordUser, Email, PhoneNumber, AGE } = usuario;
+    const con = await getConnection;
+    await con.request()
+        .input('UserID', sql.Int, UserID)
+        .input('UserName', sql.VarChar(50), UserName)
+        .input('PasswordUser', sql.VarChar(50), PasswordUser)
+        .input('Email', sql.VarChar(50), Email)
+        .input('PhoneNumber', sql.VarChar(50), PhoneNumber)
+        .input('AGE', sql.Int, AGE)
+        .execute('sp_actualizar_usuario');
+}
+
 
 
 
@@ -37,4 +50,4 @@ const DeleteUsuario = async (usuario) => {
 export {addUsuario}
 export {DeleteUsuario}
 export {getAllUsuarios}
-
+export {UpdateUsuario}

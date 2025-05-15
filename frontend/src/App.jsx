@@ -11,10 +11,12 @@ import Cuenta from './pages/Cuenta';
 import Servicios from './pages/Servicios'; 
 import Explore from './pages/Explore';
 import ListarUsuarios from './pages/Usuarios/ListarUsuarios';
+import ListarApartamentos from './pages/Apartamentos/ListarApartamentos';
 import Urbanizacion from './pages/Urbanizacion';
 import Ajustes from './pages/Ajustes';
 import Eventos from './pages/Eventos';
 import HomePrincipal from './pages/HomePrincipal';
+
 
 export default function App() {
   return (
@@ -31,6 +33,7 @@ export default function App() {
             <Route path="/cuenta" element={<Cuenta />} /> 
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/listar-apartamentos" element={<ListarApartamentos />} />
             <Route path="/listar-usuarios" element={<ListarUsuarios />} />
             <Route path='/Urbanizacion' element={<Urbanizacion />} />
             <Route path='/ajustes' element={<Ajustes />} />

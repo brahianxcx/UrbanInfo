@@ -1,4 +1,4 @@
-import { getAllUsuarios, addUsuario, DeleteUsuario } from "../model/USUARIOModel.js";
+import { getAllUsuarios, addUsuario, DeleteUsuario, UpdateUsuario} from "../model/USUARIOModel.js";
 
 const getAllU = async (req, res) =>{
        
@@ -34,4 +34,14 @@ const DeleteU = async (req, res) =>{
 }
 
 
-export {getAllU, addU, DeleteU}
+const updateU = async (req, res) => {
+    try {
+        await UpdateUsuario(req.body);
+        res.status(200).json({ message: 'Usuario actualizado' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
+export {getAllU, addU, DeleteU, updateU}

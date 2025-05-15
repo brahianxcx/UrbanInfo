@@ -105,6 +105,11 @@ export default function Header() {
                 <i className="bi bi-people-fill me-2"></i> Ver Usuarios
               </a>
             </li>
+             <li>
+              <a className="dropdown-item mb-2 d-flex align-items-center" href="/listar-apartamentos">
+                <i className="bi bi-houses-fill me-2"></i> Ver Apartamentos
+              </a>
+            </li>
             <li>
               <a className="dropdown-item mb-2 d-flex align-items-center" href="/Urbanizacion">
                 <i className="bi bi-house-door-fill me-2"></i> Mis urbanizaciones
