@@ -1,6 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React from 'react'; // Importa React para usar JSX y componentes
+import { Link } from 'react-router-dom'; // Importa Link para navegación entre páginas
 
 export default function Header() {
   return (
@@ -105,7 +104,7 @@ export default function Header() {
                 <i className="bi bi-people-fill me-2"></i> Ver Usuarios
               </a>
             </li>
-             <li>
+            <li>
               <a className="dropdown-item mb-2 d-flex align-items-center" href="/listar-apartamentos">
                 <i className="bi bi-houses-fill me-2"></i> Ver Apartamentos
               </a>
@@ -126,7 +125,6 @@ export default function Header() {
               </a>
             </li>
           </ul>
-
         </div>
       </div>
     </header>

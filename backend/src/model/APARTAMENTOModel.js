@@ -19,4 +19,4 @@ const UpdateApartamento = async (apartamento) => {
 
 
 
-export {getAllApartamentos}
+export {getAllApartamentos, UpdateApartamento}

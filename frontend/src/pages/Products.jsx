@@ -1,12 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'; // Importa React para usar JSX y componentes
+import { Link } from 'react-router-dom'; // Importa Link para navegación entre páginas
 
 export default function Productos() {
   return (
     <div className="d-flex flex-column" style={{ backgroundColor: '#f5f5dc' }}>
+      {/* Título principal */}
       <h2 className="text-center py-4" style={{ borderBottom: '3px solid gray' }}>
         Más Información sobre UrbanInfo
       </h2>
+      {/* Sección principal con descripción e imagen */}
       <div className="d-flex p-4 align-items-center" style={{ backgroundColor: '#f5f5dc' }}>
         <div className="w-50 text-center p-4">
           <h3>¿Qué es UrbanInfo?</h3>
@@ -17,7 +19,7 @@ export default function Productos() {
             ¡Descubre una nueva forma de vivir en comunidad!
           </p>
           <Link
-            to="/explore"
+            to="/explore" // Botón que lleva a la sección de exploración
             className="btn btn-success"
             style={{
               height: '40px',
@@ -39,6 +41,7 @@ export default function Productos() {
           />
         </div>
       </div>
+      {/* Secciones informativas sobre las funcionalidades */}
       <div className="d-flex flex-column gap-4 p-4">
         <div className="p-4 border rounded shadow" style={{ backgroundColor: '#e0dcb5' }}>
           <h3>Gestión de Anuncios</h3>
@@ -75,8 +78,6 @@ export default function Productos() {
           </p>
         </div>
       </div>
-
-      
     </div>
   );
 }

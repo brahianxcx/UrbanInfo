@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { ObtenerUsuarios } from '../../services/UsuariosService';
-import { Modal } from "react-bootstrap";
-import Swal from 'sweetalert2';
-import axios from 'axios';
+import { useState, useEffect } from 'react'; // Importa hooks de React para manejar estado y ciclos de vida
+import { ObtenerUsuarios } from '../../services/UsuariosService'; // Importa función para obtener usuarios desde el backend
+import { Modal } from "react-bootstrap"; // Importa componente Modal de Bootstrap para ventanas emergentes
+import Swal from 'sweetalert2'; // Importa SweetAlert2 para mostrar alertas bonitas
+import axios from 'axios'; // Importa axios para hacer peticiones HTTP
 
 export default function ListarUsuarios() {
-    const [usuarios, setUsuarios] = useState([]);
-    const [error, setError] = useState('');
-    const [Usuario, setUsuario] = useState({
+    const [usuarios, setUsuarios] = useState([]); // Estado para almacenar la lista de usuarios
+    const [error, setError] = useState(''); // Estado para manejar mensajes de error
+    const [Usuario, setUsuario] = useState({ // Estado para el usuario actual (crear/editar)
         UserID: '',
         UserName: '',
         PasswordUser: '',
@@ -15,14 +15,14 @@ export default function ListarUsuarios() {
         PhoneNumber: 0,
         AGE: 0
     });
-    const [showModal, setShowModal] = useState(false);
-    const [userIdToEdit, setUserIdToEdit] = useState('');
+    const [showModal, setShowModal] = useState(false); // Estado para mostrar/ocultar el modal
+    const [userIdToEdit, setUserIdToEdit] = useState(''); // Estado para almacenar el ID a editar
 
     useEffect(() => {
-        fetchUsuarios();
+        fetchUsuarios(); // Al montar el componente, obtiene la lista de usuarios
     }, []);
 
-    const fetchUsuarios = async () => {
+    const fetchUsuarios = async () => { // Función para obtener usuarios del backend
         try {
             const respuesta = await ObtenerUsuarios();
             setUsuarios(respuesta);
@@ -32,44 +32,42 @@ export default function ListarUsuarios() {
         }
     };
 
-    const handleChanges = (e) => {
+    const handleChanges = (e) => { // Maneja cambios en los inputs del formulario
         setUsuario({ ...Usuario, [e.target.name]: e.target.value });
     };
-   const handleSubmit = (e) => {
-        e.preventDefault() //no se envia por defecto hace que el formulario se ejecute por logica
+    const handleSubmit = (e) => { // Maneja el registro de un nuevo usuario
+        e.preventDefault(); // Evita el envío por defecto del formulario
         console.log(Usuario);
         axios.post('http://localhost:3000/TablaUsuarios', Usuario)
             .then(response => {
                 Swal.fire('Exitoso', 'usuario Registrado', 'success')
                 setShowModal(false)
                 fetchUsuarios()
+                resetFormulario();
             })
-
     }
 
-const handleEditar = (e) => {
-    e.preventDefault();
-    if (!Usuario.UserID) {
-        Swal.fire('Error', 'No hay ID de usuario para editar.', 'error');
-        return;
-    }
-    console.log("Usuario a actualizar:", Usuario);
-    axios.put('http://localhost:3000/TablaUsuarios/${Usuario.UserID}', Usuario)
-        .then(response => {
-            Swal.fire('Actualizado', 'Usuario actualizado correctamente', 'success');
-            setShowModal(false);
-            fetchUsuarios();
-            resetFormulario();
-        })
-        .catch(error => {
-            console.error('Error al actualizar:', error);
-            Swal.fire('Error', 'No se pudo actualizar el usuario', 'error');
-        });
-};
+    const handleEditar = (e) => { // Maneja la edición de un usuario existente
+        e.preventDefault();
+        if (!Usuario.UserID) {
+            Swal.fire('Error', 'No hay ID de usuario para editar.', 'error');
+            return;
+        }
+        console.log("Usuario a actualizar:", Usuario);
+        axios.put(`http://localhost:3000/TablaUsuarios/${Usuario.UserID}`, Usuario)
+            .then(response => {
+                Swal.fire('Actualizado', 'Usuario actualizado correctamente', 'success');
+                setShowModal(false);
+                fetchUsuarios();
+                resetFormulario();
+            })
+            .catch(error => {
+                console.error('Error al actualizar:', error);
+                Swal.fire('Error', 'No se pudo actualizar el usuario', 'error');
+            });
+    };
 
-
-
-    const handleDelete = async (UserID) => {
+    const handleDelete = async (UserID) => { // Maneja la eliminación de un usuario
         Swal.fire({
             title: "¿Estás seguro?",
             text: "¡No podrás revertir esto!",
@@ -81,8 +79,8 @@ const handleEditar = (e) => {
             confirmButtonText: "Sí, elimínalo"
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log("ID a eliminar:", UserID);
                 axios.delete(`http://localhost:3000/TablaUsuarios/${UserID}`)
-
                     .then(() => {
                         fetchUsuarios();
                     })
@@ -92,7 +90,7 @@ const handleEditar = (e) => {
         });
     };
 
-    const buscarUsuarioPorId = () => {
+    const buscarUsuarioPorId = () => { // Busca un usuario por su ID para editarlo
         const encontrado = usuarios.find(u => u.UserID === parseInt(userIdToEdit));
         if (encontrado) {
             setUsuario(encontrado);
@@ -102,19 +100,16 @@ const handleEditar = (e) => {
         }
     };
 
-
-    
-    const resetFormulario = () => {
-    setUsuario({
-        UserID: '',
-        UserName: '',
-        PasswordUser: '',
-        Email: '',
-        PhoneNumber: 0,
-        AGE: 0
-    });
-};
- 
+    const resetFormulario = () => { // Limpia el formulario de usuario
+        setUsuario({
+            UserID: '',
+            UserName: '',
+            PasswordUser: '',
+            Email: '',
+            PhoneNumber: 0,
+            AGE: 0
+        });
+    };
 
     return (
         <div className='container'>
@@ -224,7 +219,7 @@ const handleEditar = (e) => {
                 <Modal.Header closeButton>
                     <Modal.Title>{Usuario.UserID ? 'Editar Usuario' : 'Registro de Usuario'}</Modal.Title>
                 </Modal.Header>
-               <form onSubmit={Usuario.UserID ? handleEditar : handleSubmit}>
+                <form onSubmit={Usuario.UserID ? handleEditar : handleSubmit}>
                     <input
                         onChange={handleChanges}
                         name="UserName"
@@ -261,10 +256,10 @@ const handleEditar = (e) => {
                         className="form form-control" required
                     />
                     <Modal.Footer>
-                             <button
-                                type="button"
-                                className=" form form-control btn btn-secondary"
-                                onClick={() => {
+                        <button
+                            type="button"
+                            className=" form form-control btn btn-secondary"
+                            onClick={() => {
                                 Swal.fire({
                                     icon: 'info',
                                     title: 'Cancelado',
@@ -274,11 +269,11 @@ const handleEditar = (e) => {
                                 });
                                 setShowModal(false);
                                 resetFormulario();
-                                }}
-                            >
+                            }}
+                        >
                             Cancelar
                         </button>
-                         <button
+                        <button
                             type="button"
                             className="form form-control btn btn-primary"
                             onClick={(e) => {
@@ -289,8 +284,8 @@ const handleEditar = (e) => {
                                 }
                             }}
                         >
-                        Guardar
-                    </button>
+                            Guardar
+                        </button>
                     </Modal.Footer>
                 </form>
             </Modal>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Importa React y el hook useState para manejar el estado
 
 export default function Servicios() {
-  const [pedido, setPedido] = useState({
+  const [pedido, setPedido] = useState({ // Estado para los datos del pedido a domicilio
     tipo: '',
     descripcion: '',
     direccion: '',
@@ -11,7 +11,7 @@ export default function Servicios() {
     pagado: false,
   });
 
-  const [pedidoEnviado, setPedidoEnviado] = useState(false);
+  const [pedidoEnviado, setPedidoEnviado] = useState(false); // Estado para saber si el pedido fue enviado
 
   // Maneja los cambios en los campos de formulario
   const manejarCambio = (e) => {

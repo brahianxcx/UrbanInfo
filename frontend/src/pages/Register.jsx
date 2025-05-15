@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
-import backgroundImage from "/fondo-login2.jpg"; 
-import axios from "axios";
-import Swal from "sweetalert2";
+import React, { useState } from "react"; // Importa React y el hook useState para manejar el estado del formulario
+import { useNavigate } from "react-router-dom"; // Importa useNavigate para redirigir después del registro
+import backgroundImage from "/fondo-login2.jpg"; // Importa la imagen de fondo
+import axios from "axios"; // Importa axios para hacer peticiones HTTP
+import Swal from "sweetalert2"; // Importa SweetAlert2 para mostrar alertas
 
 const Register = () => {
-  const navigate = useNavigate(); // Inicializa useNavigate
-  const [Usuario, setUsuario] = useState({
+  const navigate = useNavigate(); // Inicializa useNavigate para redirección
+  const [Usuario, setUsuario] = useState({ // Estado para los datos del usuario a registrar
     UserName: '',
     PasswordUser: '',
     Email: '',
@@ -14,21 +14,21 @@ const Register = () => {
     AGE: 0
   });
 
-  const handleChanges = (e) => {
+  const handleChanges = (e) => { // Maneja los cambios en los campos del formulario
     setUsuario({ ...Usuario, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { // Maneja el envío del formulario de registro
     e.preventDefault();
     console.log(Usuario);
-    axios.post('http://localhost:3000/register', Usuario)
+    axios.post('http://localhost:3000/register', Usuario) // Envía los datos al backend
       .then(response => {
-        Swal.fire('Exitoso', 'Usuario Registrado', 'success');
+        Swal.fire('Exitoso', 'Usuario Registrado', 'success'); // Muestra alerta de éxito
         navigate('/login'); // Redirige a la página de inicio de sesión
       })
       .catch(error => {
         console.error(error);
-        Swal.fire('Error', 'Hubo un problema al registrar al usuario', 'error');
+        Swal.fire('Error', 'Hubo un problema al registrar al usuario', 'error'); // Muestra alerta de error
       });
   };
 
@@ -73,12 +73,13 @@ const Register = () => {
             </div>
             <div className="mb-3"> 
               <input 
-              type="password" 
-              name="ConfirmPassword" 
-              placeholder="Confirmar Contraseña" 
-              className="form-control"               
+                type="password" 
+                name="ConfirmPassword" 
+                placeholder="Confirmar Contraseña" 
+                className="form-control" 
+                // Este campo es solo visual, no se envía al backend
               />
-              </div>
+            </div>
             <div className="mb-3">
               <input
                 type="tel"
@@ -121,4 +122,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register; // Exporta el componente Register
