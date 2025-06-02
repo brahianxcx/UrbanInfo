@@ -16,6 +16,7 @@ import Urbanizacion from './pages/Urbanizacion';
 import Ajustes from './pages/Ajustes';
 import Eventos from './pages/Eventos';
 import HomePrincipal from './pages/HomePrincipal';
+import RutaProtegidaAdmin from './components/RutaProtegidaAdmin';
 
 
 export default function App() {
@@ -33,12 +34,12 @@ export default function App() {
             <Route path="/cuenta" element={<Cuenta />} /> 
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/explore" element={<Explore />} />
-            <Route path="/listar-apartamentos" element={<ListarApartamentos />} />
-            <Route path="/listar-usuarios" element={<ListarUsuarios />} />
+            <Route path="/listar-apartamentos" element={<ListarApartamentos />} />          
             <Route path='/Urbanizacion' element={<Urbanizacion />} />
             <Route path='/ajustes' element={<Ajustes />} />
             <Route path='/eventos' element={<Eventos />} />
             <Route path="/home-principal" element={<HomePrincipal/>} />
+            <Route path="/listar-usuarios"element={<ListarUsuarios /> }/>
           </Routes>
           <Footer />
         </div>

@@ -40,14 +40,16 @@ const UpdateUsuario = async (usuario) => { // Actualiza los datos de un usuario 
         .execute('sp_actualizar_usuario'); // Ejecuta el procedimiento almacenado para actualizar usuario
 }
 
-const ValidarUsuario = async (usuario) => { // Valida si un usuario existe en la base de datos
-    const { UserName, PasswordUser } = usuario; // Desestructura los datos del usuario
-    const con = await getConnection; // Obtiene la conexión
+const ValidarUsuario = async (usuario) => {
+    const { UserName, PasswordUser } = usuario;
+    const con = await getConnection;
+    console.log("Parámetros recibidos en el modelo:", UserName, PasswordUser); // <-- AGREGA ESTO
     const result = await con.request()
-        .input('UserName', sql.VarChar(50), UserName) // Agrega el parámetro UserName
-        .input('PasswordUser', sql.VarChar(50), PasswordUser) // Agrega el parámetro PasswordUser
-        .execute('Validarusuario'); // Ejecuta el procedimiento almacenado para validar usuario
-    return result.recordset; // Retorna el conjunto de registros obtenidos
+        .input('UserName', sql.VarChar(50), UserName)
+        .input('PasswordUser', sql.VarChar(50), PasswordUser)
+        .execute('ValidarUsuario');
+    console.log("Resultado SQL:", result.recordset); // <-- Y ESTO
+    return result.recordset;
 }
 
 // Exporta las funciones para usarlas en otros archivos

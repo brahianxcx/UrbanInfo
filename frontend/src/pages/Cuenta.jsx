@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Cuenta() {
+  // Obtiene el usuario logueado desde localStorage
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+
   return (
     <div className="mt-4 d-flex flex-column align-items-center">
       <h2 className="mb-4">Mi Cuenta</h2>
@@ -12,10 +15,36 @@ export default function Cuenta() {
           Información Básica
         </div>
         <div className="card-body" style={{ backgroundColor: 'white' }}>
-          <p><strong>Nombre:</strong> Camilo Jaramillo</p>
-          <p><strong>Correo:</strong> camilo@gmail.com</p>
-          <p><strong>Dirección:</strong> Calle #123</p>
-          <p><strong>Teléfono:</strong> 3147964238</p>
+          <p><strong>Nombre:</strong> {usuario?.UserName || "No disponible"}</p>
+          <p><strong>Correo:</strong> {usuario?.Email || "No disponible"}</p>
+          <p><strong>Teléfono:</strong> {usuario?.PhoneNumber || "No disponible"}</p>
+          <p><strong>Edad:</strong> {usuario?.AGE || "No disponible"}</p>
+        </div>
+      </div>
+
+      {/* Historial de Pedidos */}
+      <div className="card w-100 mb-4" style={{ maxWidth: '500px' }}>
+        <div className="card-header" style={{ backgroundColor: '#f9e79f', fontWeight: 'bold' }}>
+          Historial de Pedidos
+        </div>
+        <div className="card-body">
+          <ul className="list-unstyled mb-0">
+            <li>No tienes pedidos registrados.</li>
+            {/* Aquí puedes mapear pedidos reales si los tienes */}
+          </ul>
+        </div>
+      </div>
+
+      {/* Historial de Transacciones */}
+      <div className="card w-100 mb-4" style={{ maxWidth: '500px' }}>
+        <div className="card-header" style={{ backgroundColor: '#aed6f1', fontWeight: 'bold' }}>
+          Historial de Transacciones
+        </div>
+        <div className="card-body">
+          <ul className="list-unstyled mb-0">
+            <li>No tienes transacciones registradas.</li>
+            {/* Aquí puedes mapear transacciones reales si las tienes */}
+          </ul>
         </div>
       </div>
 
@@ -82,9 +111,6 @@ export default function Cuenta() {
           }}
         >
           Ajustes
-        </Link>
-        <Link to="/logout" className="btn btn-outline-danger">
-          Cerrar Sesión
         </Link>
       </div>
     </div>

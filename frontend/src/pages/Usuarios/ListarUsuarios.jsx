@@ -5,6 +5,8 @@ import Swal from 'sweetalert2'; // Importa SweetAlert2 para mostrar alertas boni
 import axios from 'axios'; // Importa axios para hacer peticiones HTTP
 
 export default function ListarUsuarios() {
+    const [cantidadRegistros, setCantidadRegistros] = useState(10); // Mostrar los primeros N registros
+    const [filtro, setFiltro] = useState(''); // Estado para manejar el filtro de búsqueda
     const [usuarios, setUsuarios] = useState([]); // Estado para almacenar la lista de usuarios
     const [error, setError] = useState(''); // Estado para manejar mensajes de error
     const [Usuario, setUsuario] = useState({ // Estado para el usuario actual (crear/editar)
@@ -35,9 +37,9 @@ export default function ListarUsuarios() {
     const handleChanges = (e) => { // Maneja cambios en los inputs del formulario
         setUsuario({ ...Usuario, [e.target.name]: e.target.value });
     };
+
     const handleSubmit = (e) => { // Maneja el registro de un nuevo usuario
         e.preventDefault(); // Evita el envío por defecto del formulario
-        console.log(Usuario);
         axios.post('http://localhost:3000/TablaUsuarios', Usuario)
             .then(response => {
                 Swal.fire('Exitoso', 'usuario Registrado', 'success')
@@ -53,7 +55,6 @@ export default function ListarUsuarios() {
             Swal.fire('Error', 'No hay ID de usuario para editar.', 'error');
             return;
         }
-        console.log("Usuario a actualizar:", Usuario);
         axios.put(`http://localhost:3000/TablaUsuarios/${Usuario.UserID}`, Usuario)
             .then(response => {
                 Swal.fire('Actualizado', 'Usuario actualizado correctamente', 'success');
@@ -67,7 +68,7 @@ export default function ListarUsuarios() {
             });
     };
 
-    const handleDelete = async (UserID) => { // Maneja la eliminación de un usuario
+    const handleDelete = async (UserID) => {
         Swal.fire({
             title: "¿Estás seguro?",
             text: "¡No podrás revertir esto!",
@@ -77,15 +78,19 @@ export default function ListarUsuarios() {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Sí, elimínalo"
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                console.log("ID a eliminar:", UserID);
-                axios.delete(`http://localhost:3000/TablaUsuarios/${UserID}`)
-                    .then(() => {
-                        fetchUsuarios();
-                    })
-                    .catch((error) => console.error(error));
-                Swal.fire("Eliminado", "El usuario ha sido eliminado.", "success");
+                try {
+                    await axios.delete(`http://localhost:3000/TablaUsuarios/${UserID}`);
+                    Swal.fire("Eliminado", "El usuario ha sido eliminado.", "success");
+                    await fetchUsuarios(); // Recargar la lista
+                } catch (error) {
+                    console.error('Error al eliminar:', error);
+                    Swal.fire("Error",
+                        `No se pudo eliminar el usuario:`,
+                        "error"
+                    );
+                }
             }
         });
     };
@@ -172,7 +177,29 @@ export default function ListarUsuarios() {
                     </button>
                 </div>
             </div>
-
+            <div className="mb-4 text-center">
+                <input
+                    type="text"
+                    className="form-control w-50 d-inline-block"
+                    placeholder="Buscar por ID, nombre o correo..."
+                    value={filtro}
+                    onChange={(e) => setFiltro(e.target.value)}
+                />
+            </div>
+            <div className="d-flex justify-content-center align-items-center gap-2 mb-3 w-75 mx-auto">
+                <label><strong>Mostrar:</strong></label>
+                <select
+                    className="form-select w-auto"
+                    value={cantidadRegistros}
+                    onChange={(e) => setCantidadRegistros(parseInt(e.target.value))}
+                    style={{ border: '2px solid #8c7b5e', backgroundColor: '#f9f6f1' }}
+                >
+                    <option value={5}>5</option>
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={usuarios.length}>Todos</option>
+                </select>
+            </div>
             <h1 style={{ textAlign: 'center' }}>Lista de usuarios</h1>
             <table className="table table-striped">
                 <thead>
@@ -187,31 +214,38 @@ export default function ListarUsuarios() {
                     </tr>
                 </thead>
                 <tbody>
-                    {usuarios.map((u) => (
-                        <tr key={u.UserID} className='text-center'>
-                            <td>{u.UserID}</td>
-                            <td>{u.UserName}</td>
-                            <td>{u.PasswordUser}</td>
-                            <td>{u.Email}</td>
-                            <td>{u.PhoneNumber}</td>
-                            <td>{u.AGE}</td>
-                            <td>
-                                <button
-                                    onClick={() => handleDelete(u.UserID)}
-                                    className='btn btn'
-                                    style={{
-                                        backgroundColor: '#aa9c7c',
-                                        color: 'white',
-                                        border: '2px solid #8c7b5e',
-                                        padding: '10px',
-                                        fontSize: '16px',
-                                        borderRadius: '8px',
-                                        fontWeight: 'bold'
-                                    }}
-                                >Eliminar</button>
-                            </td>
-                        </tr>
-                    ))}
+                    {usuarios
+                        .filter(u =>
+                            u.UserID.toString().includes(filtro) ||
+                            u.UserName.toLowerCase().includes(filtro.toLowerCase()) ||
+                            u.Email.toLowerCase().includes(filtro.toLowerCase())
+                        )
+                        .slice(0, cantidadRegistros)
+                        .map((u) => (
+                            <tr key={u.UserID} className='text-center'>
+                                <td>{u.UserID}</td>
+                                <td>{u.UserName}</td>
+                                <td>{u.PasswordUser}</td>
+                                <td>{u.Email}</td>
+                                <td>{u.PhoneNumber}</td>
+                                <td>{u.AGE}</td>
+                                <td>
+                                    <button
+                                        onClick={() => handleDelete(u.UserID)}
+                                        className='btn btn'
+                                        style={{
+                                            backgroundColor: '#aa9c7c',
+                                            color: 'white',
+                                            border: '2px solid #8c7b5e',
+                                            padding: '10px',
+                                            fontSize: '16px',
+                                            borderRadius: '8px',
+                                            fontWeight: 'bold'
+                                        }}
+                                    >Eliminar</button>
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
 

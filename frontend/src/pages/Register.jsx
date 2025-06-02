@@ -46,7 +46,7 @@ const Register = () => {
                 type="text"
                 name="UserName"
                 placeholder="Nombre de Usuario"
-                className="form-control"
+                className="form-control" required
                 value={Usuario.UserName}
                 onChange={handleChanges}
               />
@@ -56,7 +56,7 @@ const Register = () => {
                 type="email"
                 name="Email"
                 placeholder="Correo Electrónico"
-                className="form-control"
+                className="form-control" required
                 value={Usuario.Email}
                 onChange={handleChanges}
               />
@@ -66,7 +66,7 @@ const Register = () => {
                 type="password"
                 name="PasswordUser"
                 placeholder="Contraseña"
-                className="form-control"
+                className="form-control" required
                 value={Usuario.PasswordUser}
                 onChange={handleChanges}
               />
@@ -76,7 +76,7 @@ const Register = () => {
                 type="password" 
                 name="ConfirmPassword" 
                 placeholder="Confirmar Contraseña" 
-                className="form-control" 
+                className="form-control" required
                 // Este campo es solo visual, no se envía al backend
               />
             </div>
@@ -85,7 +85,7 @@ const Register = () => {
                 type="tel"
                 name="PhoneNumber"
                 placeholder="Número de Teléfono"
-                className="form-control"
+                className="form-control" required
                 value={Usuario.PhoneNumber}
                 onChange={handleChanges}
               />
@@ -95,7 +95,7 @@ const Register = () => {
                 type="number"
                 name="AGE"
                 placeholder="Edad"
-                className="form-control"
+                className="form-control" required
                 value={Usuario.AGE}
                 onChange={handleChanges}
               />

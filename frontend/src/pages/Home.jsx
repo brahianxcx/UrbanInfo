@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';  // Importa Link para navegación decla
 export default function Home() {
   const navigate = useNavigate(); // Hook para cambiar de ruta programáticamente
 
-  const handleScroll = () => { // Función que navega a la página principal al hacer clic en la flecha
-    navigate('/home-principal'); 
-  };
+  
 
   return (
     <div className="d-flex vh-100">
@@ -44,19 +42,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Flecha flotante para navegar hacia abajo */}
-      <div
-        className="d-flex justify-content-center align-items-center position-fixed"
-        style={{
-          bottom: '20px', 
-          left: '50%', 
-          transform: 'translateX(-50%)', 
-          cursor: 'pointer',
-        }}
-        onClick={handleScroll}
-      >
-        <FaArrowDown size={40} color="#8c7b5e" />
-      </div>
+      
     </div>
   );
 }

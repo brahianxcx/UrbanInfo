@@ -40,8 +40,9 @@ const updateU = async (req, res) => { // Controlador para actualizar un usuario
 const ValidarU = async (req, res) => { // Controlador para validar un usuario
     try {
         const result = await ValidarUsuario(req.body); // Llama al modelo para validar usuario con los datos del body
+        console.log("Resultado de ValidarUsuario:", result);
         if (result.length > 0) { // Si se encuentra el usuario
-            res.status(200).json({ message: 'Usuario válido' }); // Responde con éxito y mensaje
+           res.status(200).json(result[0]); // <--- Envía el usuario completo
         } else {
             res.status(401).json({ message: 'Usuario no válido' }); // Responde con error de autorización
         }
